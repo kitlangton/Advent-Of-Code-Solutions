@@ -58,11 +58,27 @@ describe Grid do
     expect(grid.on_lights.count).to eq 377891
   end
 
-  xit 'reads advent instructions' do
-    grid = Grid.new(1000)
-    instructions = File.read('input.txt')
-    grid.run_instructions(instructions)
-    expect(grid.on_lights.count).to eq 377891
-  end
+end
+
+describe BrightnessGrid do
+
+    it 'turns lights on' do
+      grid = BrightnessGrid.new(10)
+      grid.turn_on([0,0],[0,0])
+      expect(grid.total_brightness).to eq 1
+    end
+
+    it 'turns lights on' do
+      grid = BrightnessGrid.new(100)
+      grid.toggle([0,0],[9,9])
+      expect(grid.total_brightness).to eq 200
+    end
+
+    it 'reads advent instructions' do
+      grid = BrightnessGrid.new(1000)
+      instructions = File.read('input.txt')
+      grid.run_instructions(instructions)
+      expect(grid.total_brightness).to eq 377891
+    end
 
 end
